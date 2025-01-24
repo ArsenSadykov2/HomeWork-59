@@ -1,5 +1,5 @@
 import './App.css'
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import SubmitForm from "./components/SubmitForm/SubmitForm.tsx";
 import {Item} from "./types";
 import MoviesList from "./components/MoviesList/MoviesList.tsx";
