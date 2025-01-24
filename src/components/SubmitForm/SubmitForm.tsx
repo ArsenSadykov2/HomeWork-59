@@ -1,8 +1,13 @@
 import {useState} from "react";
 import {Item} from "../../types";
+import * as React from "react";
+
+interface Props {
+    onSubmitForm: (newFilm: Item) => void;
+}
 
 
-const Task1 = () => {
+const SubmitForm: React.FC<Props> = ({onSubmitForm}) => {
     const [movieItem, setMovieItem] = useState<Item>({
         id: String(new Date().toString()),
         name: '',
@@ -11,9 +16,13 @@ const Task1 = () => {
         const {value, name} = e.target;
         setMovieItem(prevState => ({...prevState, [name]: value}));
     }
+    const onSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        onSubmitForm({...movieItem,});
+        setMovieItem({ id: String(new Date().toString()), name: '' });
+    }
     return (
-        <div>
-            <form>
+            <form onSubmit={onSubmit}>
                 <h3>Add New Film to my List</h3>
                 <hr/>
                 <div className="row">
@@ -29,8 +38,7 @@ const Task1 = () => {
                     <button type="submit" className="btn btn-primary mt-4">Add</button>
                 </div>
             </form>
-        </div>
     );
 };
 
-export default Task1;
+export default SubmitForm;
