@@ -17,6 +17,14 @@ const App = () => {
         setNewmovies(peopleArrayCopy);
     }
 
+    const saveChangeValues = (id: string, newName: string) => {
+        setNewmovies(prevMovies =>
+            prevMovies.map(movie =>
+                movie.id === id ? {...movie, name: newName} : movie
+            )
+        );
+    }
+
    return (
     <>
         <main className="container">
@@ -25,7 +33,7 @@ const App = () => {
                     <SubmitForm onSubmitForm={addFilm} />
                 </div>
                 <div className="col-6">
-                    <MoviesList movies={newmovies} deleteFilm={deleteFilm} />
+                    <MoviesList movies={newmovies} deleteFilm={deleteFilm} saveChangeValues={saveChangeValues} />
                 </div>
             </div>
         </main>
